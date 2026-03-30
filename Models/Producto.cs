@@ -18,11 +18,12 @@ namespace TiendaRopa.Models
         [StringLength(50)]
         public string Color { get; set; } = string.Empty;
 
-        [Required]
-        [Range(0, 1000000, ErrorMessage = "El precio debe ser mayor a 0")]
+        [Required(ErrorMessage = "El precio es obligatorio")]
+        [Range(1, 99999999, ErrorMessage = "El precio debe ser mayor a 0")]
         public double Precio { get; set; }
 
-        [Range(0, 100, ErrorMessage = "El stock no puede ser negativo")]
+        [Required(ErrorMessage = "El stock es obligatorio")]
+        [Range(0, 10000, ErrorMessage = "El stock debe ser entre 0 y 10000")]
         public int Stock { get; set; }
 
         public int CategoriaId { get; set; }

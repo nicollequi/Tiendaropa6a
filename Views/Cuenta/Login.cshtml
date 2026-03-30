@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div style="min-height:100vh; background:linear-gradient(135deg,#1a1a2e 0%,#0f3460 60%,#e2b96f 100%); display:flex; align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:20px; padding:3rem; width:100%; max-width:420px; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+        
+        <div class="text-center mb-4">
+            <h1 style="font-family:'Playfair Display',serif; color:#1a1a2e; font-size:2rem;">👗 TiendaRopa</h1>
+            <p style="color:#888; font-size:0.9rem; letter-spacing:2px; text-transform:uppercase;">Sistema de Gestión</p>
+        </div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger" style="border-radius:10px; font-size:0.9rem;">
+                <i class="fas fa-exclamation-circle"></i> @ViewBag.Error
+            </div>
+        }
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label fw-bold" style="color:#1a1a2e;">Correo electrónico</label>
+                <input type="email" name="email" class="form-control" placeholder="tucorreo@email.com"
+                       style="border-radius:10px; padding:0.8rem;" required />
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold" style="color:#1a1a2e;">Contraseña</label>
+                <input type="password" name="contrasena" class="form-control" placeholder="••••••••"
+                       style="border-radius:10px; padding:0.8rem;" required />
+            </div>
+            <button type="submit" class="btn-gold btn w-100" style="padding:0.8rem;">
+                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+            </button>
+        </form>
+
+        <hr class="my-4">
+        <p class="text-center text-muted small">
+            ¿No tienes cuenta?
+            <a asp-action="Registro" style="color:#e2b96f; font-weight:700;">Regístrate aquí</a>
+        </p>
+    </div>
+</div>
