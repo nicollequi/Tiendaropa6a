@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tienda Ropa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; background: #fafafa; color: #2d2d2d; }
+
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #e2b96f !important;
+            letter-spacing: 2px;
+        }
+        .navbar-brand span { color: #ffffff; }
+        .nav-link {
+            color: #ccc !important;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: #e2b96f !important; }
+        .nav-link.active { color: #e2b96f !important; }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.85rem;
+        }
+        footer span { color: #e2b96f; }
+
+        /* CARDS */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* BOTONES */
+        .btn-gold {
+            background: linear-gradient(135deg, #e2b96f, #c9963d);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.6rem 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #c9963d, #a87830);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(226,185,111,0.4);
+        }
+        .btn-dark-custom {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.6rem 1.8rem;
+            transition: all 0.3s;
+        }
+        .btn-dark-custom:hover {
+            color: #e2b96f;
+            transform: translateY(-2px);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #e2b96f;
+        }
+
+        /* TABLA */
+        .table-custom thead {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: #e2b96f;
+        }
+        .table-custom tbody tr:hover { background: #f0f4ff; }
+
+        /* BADGE */
+        .badge-stock {
+            background: #e2b96f;
+            color: #1a1a2e;
+            font-weight: 700;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+        }
+        .badge-agotado {
+            background: #e74c3c;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                👗 Tienda<span>Ropa</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Producto" asp-action="Index">
+                            <i class="fas fa-tshirt"></i> Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Categoria" asp-action="Index">
+                            <i class="fas fa-tags"></i> Categorías
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>© 2025 <span>TiendaRopa</span> — Sistema de Gestión</p>
+        <p style="margin-top:0.5rem; font-size:0.75rem;">Desarrollado con ❤️ en ASP.NET Core</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

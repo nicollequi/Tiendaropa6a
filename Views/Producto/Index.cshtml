@@ -1,0 +1,87 @@
+﻿@model List<TiendaRopa.Models.Producto>
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="page-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h1><i class="fas fa-tshirt"></i> Productos</h1>
+            <p class="mb-0" style="color:#ccc;">Gestiona todas las prendas de tu tienda</p>
+        </div>
+        <a asp-action="Create" class="btn-gold btn">
+            <i class="fas fa-plus"></i> Nuevo Producto
+        </a>
+    </div>
+</div>
+
+<div class="container pb-5">
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fas fa-tshirt fa-4x mb-3" style="color:#e2b96f;"></i>
+            <h4>No hay productos aún</h4>
+            <p class="text-muted">Agrega tu primer producto</p>
+            <a asp-action="Create" class="btn-gold btn mt-2">
+                <i class="fas fa-plus"></i> Agregar producto
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-custom table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Talla</th>
+                        <th>Color</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var producto in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div style="background:linear-gradient(135deg,#1a1a2e,#0f3460);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                        <i class="fas fa-tshirt" style="color:#e2b96f;font-size:0.8rem;"></i>
+                                    </div>
+                                    <strong>@producto.Nombre</strong>
+                                </div>
+                            </td>
+                            <td>@(producto.Categoria?.Nombre ?? "Sin categoría")</td>
+                            <td><span class="badge bg-secondary">@producto.Talla</span></td>
+                            <td>@producto.Color</td>
+                            <td><strong style="color:#0f3460;">$@producto.Precio.ToString("N0")</strong></td>
+                            <td>
+                                @if (producto.Stock > 0)
+                                {
+                                    <span class="badge-stock">@producto.Stock unid.</span>
+                                }
+                                else
+                                {
+                                    <span class="badge-agotado">Agotado</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a asp-action="Edit" asp-route-id="@producto.Id" class="btn btn-sm btn-dark-custom">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@producto.Id" class="btn btn-sm btn-danger" style="border-radius:25px;">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

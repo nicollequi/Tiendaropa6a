@@ -1,0 +1,72 @@
+﻿@model TiendaRopa.Models.Producto
+@{
+    ViewData["Title"] = "Nuevo Producto";
+}
+
+<div class="page-header">
+    <div class="container">
+        <h1><i class="fas fa-plus"></i> Nuevo Producto</h1>
+        <p class="mb-0" style="color:#ccc;">Completa los datos para agregar una prenda</p>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-4">
+                <form asp-action="Create">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label asp-for="Nombre" class="form-label fw-bold">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Ej: Camisa Oxford" />
+                            <span asp-validation-for="Nombre" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Talla" class="form-label fw-bold">Talla</label>
+                            <select asp-for="Talla" class="form-select">
+                                <option value="">-- Selecciona --</option>
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                            <span asp-validation-for="Talla" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Color" class="form-label fw-bold">Color</label>
+                            <input asp-for="Color" class="form-control" placeholder="Ej: Azul marino" />
+                            <span asp-validation-for="Color" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Precio" class="form-label fw-bold">Precio</label>
+                            <input asp-for="Precio" class="form-control" placeholder="0" />
+                            <span asp-validation-for="Precio" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Stock" class="form-label fw-bold">Stock</label>
+                            <input asp-for="Stock" class="form-control" placeholder="0" />
+                            <span asp-validation-for="Stock" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="CategoriaId" class="form-label fw-bold">Categoría</label>
+                            <select asp-for="CategoriaId" asp-items="ViewBag.Categorias" class="form-select">
+                                <option value="">-- Selecciona una categoría --</option>
+                            </select>
+                            <span asp-validation-for="CategoriaId" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn-gold btn">
+                            <i class="fas fa-save"></i> Guardar
+                        </button>
+                        <a asp-action="Index" class="btn btn-dark-custom">
+                            <i class="fas fa-arrow-left"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
